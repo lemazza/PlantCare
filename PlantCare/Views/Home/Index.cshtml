@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div id="plant-form" >
+        <label for="plantname">Plant Name</label>
+        <input type="text" name="plantname" />
+        <label for="wiki-url">Wiki URL</label>
+        <input type="text" name="wiki-url" />
+        <button id="submitBtn"  >Submit</button>
+    </div>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<script>
+    console.log('hits beginning')
+    
+    const handleSubmit = () => {
+        console.log('start of func')
+        var form = document.getElementById("plant-form");
+        let plantname = document.getElementsByName('plantname').val
+        let wikiUrl = document.getElementsByName('wiki-url').val;
+        console.log('form', form);
+        var data = {
+            plantname,
+            wikiUrl,
+        };
+        console.log('data', data);
+
+        // Define the URL of your REST API endpoint.
+        var apiUrl = "https://localhost:7236/"; // Replace with your actual API URL.
+
+        // Make the AJAX POST request.
+        $.ajax({
+            type: "POST",
+            url: apiUrl,
+            headers: {'Access-Control-Allow-Origin': '*'},
+            data: JSON.stringify(data), // Convert data to JSON format
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                // Handle successful response (e.g., display a message)
+                alert("Data successfully posted!");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                // Handle errors (e.g., display an error message)
+                console.error("Error:", textStatus, errorThrown);
+            }
+        });
+    }
+    let element = document.getElementById("submitBtn");
+    element.addEventListener('click', handleSubmit);
+    
+
+
+</script>
