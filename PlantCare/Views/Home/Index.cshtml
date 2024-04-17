@@ -3,33 +3,24 @@
 }
 
 <div class="text-center">
-    <div id="plant-form" >
+    <form id="plant-form" >
         <label for="plantname">Plant Name</label>
         <input type="text" name="plantname" />
         <label for="wiki-url">Wiki URL</label>
         <input type="text" name="wiki-url" />
         <button id="submitBtn"  >Submit</button>
-    </div>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </form>
 </div>
 
-<script>
+<script type="text/javascript">
     console.log('hits beginning')
     
     const handleSubmit = () => {
         console.log('start of func')
-        var form = document.getElementById("plant-form");
-        let plantname = document.getElementsByName('plantname').val
-        let wikiUrl = document.getElementsByName('wiki-url').val;
-        console.log('form', form);
-        var data = {
-            plantname,
-            wikiUrl,
-        };
-        console.log('data', data);
-
         // Define the URL of your REST API endpoint.
         var apiUrl = "https://localhost:7236/"; // Replace with your actual API URL.
+        var data = $(#plant-form).serialize();
+        console.log('data', data);
 
         // Make the AJAX POST request.
         $.ajax({
