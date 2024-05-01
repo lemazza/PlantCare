@@ -1,6 +1,7 @@
 using PlantCare;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using PlantCare.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<PlantCareDBContext>(options =>
     options.UseSqlServer("Server=localhost;Database=PlantCare;Trusted_Connection=True;Encrypt=False;TrustServerCertificate=true"));
+
+builder.Services.AddScoped<IPlantInfoService, PlantInfoService>();
 
 var app = builder.Build();
 
